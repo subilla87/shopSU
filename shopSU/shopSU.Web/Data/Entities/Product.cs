@@ -8,7 +8,7 @@ namespace shopSU.Web.Data.Entities
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class Product
+    public class Product : IEntity
     {
         public int Id { get; set; }
 

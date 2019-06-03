@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using shopSU.Web.Data;
-using shopSU.Web.Data.Entities;
+﻿
 
 namespace shopSU.Web.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using shopSU.Web.Data;
+    using shopSU.Web.Data.Entities;
+    using shopSU.Web.Helpers;
+    using System.Threading.Tasks;
     public class ProductsController : Controller
     {
         private readonly IRepository repository;
+        private readonly IUserHelper userHelper;
 
-        public ProductsController(IRepository repository)
+        public ProductsController(IRepository repository, IUserHelper userHelper)
         {
             this.repository = repository;
+            this.userHelper = userHelper;
         }
 
         // GET: Products
@@ -54,6 +54,7 @@ namespace shopSU.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                product.User = await this.userHelper.GetUserByEmailAsync("subilla@gmail.com");
                 this.repository.AddProduct(product);
                 await this.repository.SaveAllAsync();
                 return RedirectToAction(nameof(Index));
@@ -69,7 +70,7 @@ namespace shopSU.Web.Controllers
                 return NotFound();
             }
 
-            
+
             var product = this.repository.GetProduct(id.Value);
             if (product == null)
             {
@@ -78,16 +79,17 @@ namespace shopSU.Web.Controllers
             return View(product);
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Product product)
         {
-           
+
             if (ModelState.IsValid)
             {
                 try
                 {
+                    product.User = await this.userHelper.GetUserByEmailAsync("subilla@gmail.com");
                     this.repository.UpdateProduct(product);
                     await this.repository.SaveAllAsync();
                 }
@@ -108,7 +110,7 @@ namespace shopSU.Web.Controllers
         }
 
         // GET: Products/Delete/5
-        public  IActionResult Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -135,6 +137,6 @@ namespace shopSU.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        
+
     }
 }

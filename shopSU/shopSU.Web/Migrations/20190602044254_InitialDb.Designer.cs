@@ -10,8 +10,8 @@ using shopSU.Web.Data;
 namespace shopSU.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190531204828_Users")]
-    partial class Users
+    [Migration("20190602044254_InitialDb")]
+    partial class InitialDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
