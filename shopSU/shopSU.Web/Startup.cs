@@ -47,7 +47,8 @@ namespace shopSU.Web
 
             services.AddTransient<SeedDB>();
 
-            services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICountryRepositorty, CountryRepositorty>();
             services.AddScoped<IUserHelper, UserHelper>();
             services.Configure<CookiePolicyOptions>(options =>
             {
