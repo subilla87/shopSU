@@ -10,6 +10,7 @@ namespace shopSU.Web.Controllers
     using shopSU.Web.Models;
     using System;
     using System.IO;
+    using System.Linq;
     using System.Threading.Tasks;
     public class ProductsController : Controller
     {
@@ -25,7 +26,7 @@ namespace shopSU.Web.Controllers
         // GET: Products
         public IActionResult Index()
         {
-            return View(this.productRepository.GetAll());
+            return View(this.productRepository.GetAll().OrderBy(p => p.Name));
         }
 
         // GET: Products/Details/5
@@ -77,7 +78,7 @@ namespace shopSU.Web.Controllers
                 
                 // TODO: Pending to change to: this.User.Identity.Name
                 view.User = await this.userHelper.GetUserByEmailAsync("subilla87@gmail.com");
-                var products = this.toProduct(view, path);
+                var products = this.ToProduct(view, path);
                 await this.productRepository.CreateAsync(products);
                 return RedirectToAction(nameof(Index));
             }
@@ -85,7 +86,7 @@ namespace shopSU.Web.Controllers
             return View(view);
         }
 
-        private Product toProduct(ProductViewModel view, string path)
+        private Product ToProduct(ProductViewModel view, string path)
         {
             return new Product
             {
@@ -114,26 +115,58 @@ namespace shopSU.Web.Controllers
             {
                 return NotFound();
             }
+            var view = this.ToProductViewModel(product);
+            return View(view);
+        }
 
-            return View(product);
+        private object ToProductViewModel(Product product)
+        {
+            return new ProductViewModel
+            {
+                Id = product.Id,
+                ImageUrl = product.ImageUrl,
+                IsAvailabe = product.IsAvailabe,
+                LastPurchase = product.LastPurchase,
+                LastSale = product.LastSale,
+                Name = product.Name,
+                Price = product.Price,
+                Stock = product.Stock,
+                User = product.User
+            };
         }
 
         // POST: Products/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Product product)
+        public async Task<IActionResult> Edit(ProductViewModel view)
         {
             if (ModelState.IsValid)
             {
                 try
-                {
+                {                    
+                    var path = view.ImageUrl;
+
+                    if (view.ImageFile != null && view.ImageFile.Length > 0)
+                    {
+                        path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images\\Products", view.ImageFile.FileName);
+
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+                            await view.ImageFile.CopyToAsync(stream);
+                        }
+
+                        path = $"~/images/Products/{view.ImageFile.FileName}";
+                    }
+
+
                     // TODO: Pending to change to: this.User.Identity.Name
-                    product.User = await this.userHelper.GetUserByEmailAsync("subilla87@gmail.com");
+                    view.User = await this.userHelper.GetUserByEmailAsync("subilla87@gmail.com");
+                    var product = this.ToProduct(view, path);
                     await this.productRepository.UpdateAsync(product);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await this.productRepository.ExistAsync(product.Id))
+                    if (!await this.productRepository.ExistAsync(view.Id))
                     {
                         return NotFound();
                     }
@@ -145,7 +178,7 @@ namespace shopSU.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(product);
+            return View(view);
         }
 
         // GET: Products/Delete/5

@@ -35,5 +35,17 @@ namespace shopSU.Web.Data.Entities
         public double Stock { get; set; }
 
         public User User { get; set; }
+
+        public String ImageFullPath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.ImageUrl))
+                {
+                    return null;
+                }
+                return $"{this.ImageUrl.Substring(1)}"; //Ruta Azure
+            }
+        }
     }
 }
