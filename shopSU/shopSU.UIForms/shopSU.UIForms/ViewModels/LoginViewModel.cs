@@ -14,6 +14,12 @@ namespace shopSU.UIForms.ViewModels
 
         public ICommand LoginCommand => new RelayCommand(Login);
 
+        public LoginViewModel()
+        {
+            this.Email = "subilla@gmail.com";
+            this.Password = "123456";
+        }
+
         private async void Login()
         {
             if (string.IsNullOrEmpty(this.Email))
@@ -28,7 +34,7 @@ namespace shopSU.UIForms.ViewModels
                 return;
             }
 
-            if (!this.Email.Equals("subilla87@gmail.com") || !this.Password.Equals("123456"))
+            if (!this.Email.Equals("subilla@gmail.com") || !this.Password.Equals("123456"))
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "Incorrect user or password", "Accept");
                 return;
