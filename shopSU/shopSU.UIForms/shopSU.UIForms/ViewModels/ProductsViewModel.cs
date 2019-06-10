@@ -22,12 +22,22 @@
             this.LoadProducts();
         }
 
+        private bool isRefreshing;
+
+        public bool IsRefreshing
+        {
+            get => this.isRefreshing;
+            set => this.SetValue(ref this.isRefreshing, value);
+        }
+
         private async void LoadProducts()
         {
+            this.IsRefreshing = true;
             var response = await this.apiService.GetListAsync<Product>(
                 "https://shopsuweb.azurewebsites.net",
                 "/api",
                 "/Products");
+            this.IsRefreshing = false;
             if (!response.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
