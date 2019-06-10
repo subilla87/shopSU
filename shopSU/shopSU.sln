@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shopSU.Common", "shopSU.Common\shopSU.Common.csproj", "{91F33955-96B5-4A45-855B-FAAD4CF0C08A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "shopSU.Common", "shopSU.Common\shopSU.Common.csproj", "{91F33955-96B5-4A45-855B-FAAD4CF0C08A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{8A0360EC-368C-4C3C-B68B-62C00AA905ED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FromEnd", "FromEnd", "{14C8204F-6980-48BD-942F-F99DB74756AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shopSU.Web", "shopSU.Web\shopSU.Web.csproj", "{AB09C189-E8B3-4CC3-B9F0-09899B5B9225}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "shopSU.Web", "shopSU.Web\shopSU.Web.csproj", "{AB09C189-E8B3-4CC3-B9F0-09899B5B9225}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Forms", "Forms", "{7D3DDA16-A7BD-49AB-B71A-E70A374D1B36}"
 EndProject
@@ -19,11 +19,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shopSU.UIForms.Android", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shopSU.UIForms.iOS", "shopSU.UIForms\shopSU.UIForms.iOS\shopSU.UIForms.iOS.csproj", "{F4C67E49-930D-4091-88D3-5FCB5B7B0D68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shopSU.UIForms", "shopSU.UIForms\shopSU.UIForms\shopSU.UIForms.csproj", "{8054AA25-41FB-4164-BABA-9FE9F248B94D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "shopSU.UIForms", "shopSU.UIForms\shopSU.UIForms\shopSU.UIForms.csproj", "{8054AA25-41FB-4164-BABA-9FE9F248B94D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shopSU.UIClassic", "shopSU.UIClassic\shopSU.UIClassic.csproj", "{9F68D3C1-4218-40B7-88B7-0FEC568102C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "shopSU.UIClassic", "shopSU.UIClassic\shopSU.UIClassic.csproj", "{9F68D3C1-4218-40B7-88B7-0FEC568102C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shopSU.ClassicAndroir", "shopSU.ClassicAndroir\shopSU.ClassicAndroir.csproj", "{009F7FF5-ECC0-41C4-B4B1-CF3F39A1BDE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shopSU.ClassicAndroid", "shopSU.ClassicAndroir\shopSU.ClassicAndroid.csproj", "{009F7FF5-ECC0-41C4-B4B1-CF3F39A1BDE4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shopSU.ClassicIOS", "shopSU.ClassicIOS\shopSU.ClassicIOS.csproj", "{7219006A-B41F-4536-A764-19B6E9A19E24}"
 EndProject

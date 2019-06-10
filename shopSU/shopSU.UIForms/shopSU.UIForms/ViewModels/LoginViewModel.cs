@@ -2,6 +2,7 @@
 namespace shopSU.UIForms.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
+    using shopSU.UIForms.Views;
     using System.Windows.Input;
     using Xamarin.Forms;
 
@@ -40,8 +41,12 @@ namespace shopSU.UIForms.ViewModels
                 return;
             }
 
-            await Application.Current.MainPage.DisplayAlert("Ok", "Fuck yeah!!!", "Accept");
-            
+            //await Application.Current.MainPage.DisplayAlert(
+            //    "Ok",
+            //    "Fuck yeah!!!", 
+            //    "Accept");
+            MainViewModel.GetInstance().Products = new ProductsViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new ProductsPage());
         }
     }
 }
