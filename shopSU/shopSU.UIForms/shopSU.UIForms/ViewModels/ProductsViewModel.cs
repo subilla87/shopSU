@@ -1,6 +1,4 @@
-﻿
-
-namespace shopSU.UIForms.ViewModels
+﻿namespace shopSU.UIForms.ViewModels
 {
     using shopSU.Common.Models;
     using shopSU.Common.Services;
@@ -15,8 +13,8 @@ namespace shopSU.UIForms.ViewModels
         private ApiService apiService;
         public ObservableCollection<Product> Products
         {
-            get { return this.products; }
-            set { this.SetValue(ref this.products, value); }
+            get => this.products; 
+            set => this.SetValue(ref this.products, value);
         }
         public ProductsViewModel()
         {
@@ -40,6 +38,7 @@ namespace shopSU.UIForms.ViewModels
             }
             var myProducts = (List<Product>)response.Result;
             this.Products = new ObservableCollection<Product>(myProducts);
+
 
         }
     }

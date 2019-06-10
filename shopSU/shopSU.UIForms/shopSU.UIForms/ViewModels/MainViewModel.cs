@@ -13,6 +13,7 @@ namespace shopSU.UIForms.ViewModels
         public MainViewModel()
         {
             instance = this;
+            this.Login = new LoginViewModel();
         }
 
         public static MainViewModel GetInstance()

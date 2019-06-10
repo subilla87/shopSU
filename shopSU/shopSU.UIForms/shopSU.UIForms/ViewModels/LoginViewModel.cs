@@ -45,6 +45,8 @@ namespace shopSU.UIForms.ViewModels
             //    "Ok",
             //    "Fuck yeah!!!", 
             //    "Accept");
+
+
             MainViewModel.GetInstance().Products = new ProductsViewModel();
             await Application.Current.MainPage.Navigation.PushAsync(new ProductsPage());
         }

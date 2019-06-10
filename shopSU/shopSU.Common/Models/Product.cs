@@ -3,6 +3,8 @@
 namespace shopSU.Common.Models
 {
     using Newtonsoft.Json;
+    using System;
+
     public class Product
     {
         [JsonProperty("id")]
@@ -33,6 +35,11 @@ namespace shopSU.Common.Models
         public User User { get; set; }
 
         [JsonProperty("imageFullPath")]
-        public string ImageFullPath { get; set; }
+        public Uri ImageFullPath { get; set; }
+
+        public override string ToString()
+        {
+            return $"{this.Name} {this.Price:C2}";
+        }
     }
 }

@@ -4,6 +4,7 @@ namespace shopSU.UIForms
     using shopSU.UIForms.ViewModels;
     using shopSU.UIForms.Views;
     using Xamarin.Forms;
+    
 
     public partial class App : Application
     {
