@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace shopSU.Web.Helpers
+﻿namespace shopSU.Web.Helpers
 {
-    using System.Threading.Tasks;
     using Data.Entities;
     using Microsoft.AspNetCore.Identity;
+    using shopSU.Web.Models;
+    using System.Threading.Tasks;
 
     public class UserHelper : IUserHelper
     {
         private readonly UserManager<User> userManager;
+        private readonly SignInManager<User> signInManager;
 
-        public UserHelper(UserManager<User> userManager)
+        public UserHelper(UserManager<User> userManager, 
+            SignInManager<User> signInManager)
         {
             this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
         public async Task<IdentityResult> AddUserAsync(User user, string password)
@@ -27,6 +26,21 @@ namespace shopSU.Web.Helpers
         {
             return await this.userManager.FindByEmailAsync(email);
         }
+
+        public async Task<SignInResult> LoginAsync(LoginViewModel model)
+        {
+            return await this.signInManager.PasswordSignInAsync(
+            model.Username,
+            model.Password,
+            model.RememberMe,
+            false);
+
+        }
+
+        public async Task LogoutAsync()
+        {
+            await this.signInManager.SignOutAsync();
+        }
     }
 
- }
+}

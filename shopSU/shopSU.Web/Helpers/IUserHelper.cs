@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace shopSU.Web.Helpers
+﻿namespace shopSU.Web.Helpers
 {
-    using System.Threading.Tasks;
     using Data.Entities;
     using Microsoft.AspNetCore.Identity;
+    using shopSU.Web.Models;
+    using System.Threading.Tasks;
 
     public interface IUserHelper
     {
@@ -15,5 +11,8 @@ namespace shopSU.Web.Helpers
 
         Task<IdentityResult> AddUserAsync(User user, string password);
 
+        Task<SignInResult> LoginAsync(LoginViewModel model);
+
+        Task LogoutAsync();
     }
 }
