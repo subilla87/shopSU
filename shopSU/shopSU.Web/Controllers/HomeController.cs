@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using shopSU.Web.Models;
+﻿
 
 namespace shopSU.Web.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using shopSU.Web.Models;
+    using System.Diagnostics;
+    [Authorize]
     public class HomeController : Controller
     {
         public IActionResult Index()
